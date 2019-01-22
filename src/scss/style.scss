@@ -7,12 +7,20 @@ html, body {
 }
 
 body {
-	background: url('/public/img/bg.jpg') center center;
-	/*background-color: black;*/
-	background-size: cover;
+	/*background: url('/public/img/bg.jpg') center center;*/
+	background-color: #1A1A1A;
+	/*background-size: cover;*/
 	color:white;
 	margin:0;
 	padding:8pt;
+}
+
+canvas {
+	position:absolute;
+    bottom:0;
+    top:0;
+    right:0;
+    left:0;
 }
 
 * {
@@ -82,9 +90,31 @@ h1 {
 
 #avatar {
 	align-self: flex-end;
-    width:78%;
     margin-bottom:-8pt;
     margin-left: 5%;
+    width:70%;
+    max-width: 78%;
+    max-height: 90vh;
+}
+
+#left-tree {
+	background: url('/public/img/tree-1.png') center center;
+	background-size: cover;
+	position: absolute;
+	bottom:0%;
+	left:0%;
+	width:46.4vh;
+	height:33vh;
+}
+
+#right-tree {
+	background: url('/public/img/tree-2.png') center center;
+	background-size: cover;
+	position: absolute;
+	bottom:0%;
+	right:0%;
+	width:25.9vh;
+	height:18.7vh;
 }
 
 @media screen and (max-width:780px ) {

@@ -4,6 +4,7 @@ import "./js/canvas.js";
 import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
 
 var tlLoader = new TimelineMax(),
+	body = $('body'),
 	avatar = $('#avatar'),
 	el1 = $('*[data-order="1"]'),
 	el2 = $('*[data-order="2"]'),
@@ -12,6 +13,7 @@ var tlLoader = new TimelineMax(),
 
 // Loader TimeLine
 tlLoader
+	.fromTo(body,2,	{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
 	.fromTo(avatar,1,	{autoAlpha:0}, {autoAlpha:1, ease:Power0.easeNone})
 	.fromTo(el1,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.fromTo(el2,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
@@ -20,4 +22,10 @@ tlLoader
 
 function loadSecond() {
 
+}
+
+window.onmousemove = function(e) {
+	var x = e.clientX;
+	var y = e.clientY;
+	console.log(x,y);
 }
