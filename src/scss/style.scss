@@ -4,9 +4,12 @@ html, body {
     top:0;
     right:0;
     left:0;
+    overflow: hidden;
 }
 
 body {
+    opacity:0;
+	visibility: hidden;
 	/*background: url('/public/img/bg.jpg') center center;*/
 	background-color: #1A1A1A;
 	/*background-size: cover;*/
@@ -28,10 +31,8 @@ canvas {
     font-weight: 100;
 }
 
-#test {
-	width:50vw;
-	height:50vh;
-	background-color:grey;
+.colored {
+	color:#01BBB0;
 }
 
 .container {
@@ -48,6 +49,16 @@ canvas {
 
 .col {
 	display:flex;
+}
+
+.scrolled-col {
+	/*overflow-y: scroll;*/
+    height: 100%;
+    z-index: 2;
+}
+
+.view-block {
+	margin:40pt 0;
 }
 
 .col-6 {
@@ -86,6 +97,11 @@ h1 {
 
 .p-40 {
 	font-size: 20pt;
+	margin: 4pt 0;
+}
+
+.p-64 {
+	font-size: 32pt;
 }
 
 #avatar {
@@ -117,6 +133,12 @@ h1 {
 	height:18.7vh;
 }
 
+#third-block {
+	opacity:0;
+	visibility: hidden;
+}
+
+
 @media screen and (max-width:780px ) {
 	.row {
 		flex-direction: column;
@@ -124,4 +146,9 @@ h1 {
 	.col-6 {
 		width:100%;
 	}
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }

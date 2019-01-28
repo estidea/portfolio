@@ -3,7 +3,9 @@ import utils from "./utils.js";
 var colors = ['#ffffff07','#ffffff05','#ffffff09','#ffffff11'],
 	minLine = 1,
 	maxLine = 2,
-	maxStars = 800;
+	maxStars = 800,
+	minSpeed = -1.3,
+	maxSpeed = 1.3;
 
 const PI = Math.PI;
 
@@ -70,18 +72,19 @@ window.onload = function() {
 	}
 
 	var starsArray = [];
-	canvas.onmousemove = function(e) {
-		var x = e.offsetX;
-		var y = e.offsetY;
+
+	setInterval(function(){
+		var x = utils.randomIntFromRange(0,width);
+		var y = utils.randomIntFromRange(0,height);
 		var radius = Math.pow(Math.pow(x-centerEyeX, 2)+Math.pow(y-centerEyeY, 2),0.5);
 		var startAngle = utils.randomIntFromRange(0,359)*PI/180;
 		var endAngle = startAngle + utils.randomIntFromRange(60,180)*PI/180;
 		var lineWidth = utils.randomFloatFromRange(minLine,maxLine);
-		var speed = utils.randomFloatFromRange(-1,1)*PI/180/10;
+		var speed = utils.randomFloatFromRange(minSpeed,maxSpeed)*PI/180/10;
 		if (starsArray.length<maxStars) {
 			starsArray.push(new Star(centerEyeX,centerEyeY,radius, startAngle,endAngle,lineWidth,speed));
 		} 
-	}
+	},100);
 
 	function animate() {
 		requestAnimationFrame(animate);
