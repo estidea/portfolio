@@ -1,8 +1,161 @@
 html, body {
-	height:100%
-}
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden; }
 
 body {
-	background-color: 'black';
-	color:white;
-}
+  opacity: 0;
+  visibility: hidden;
+  /*background: url('/public/img/bg.jpg') center center;*/
+  background-color: #1A1A1A;
+  /*background-size: cover;*/
+  color: white;
+  margin: 0;
+  padding: 8pt; }
+
+canvas {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0; }
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100; }
+
+.colored {
+  color: #01BBB0; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.row {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row; }
+
+.col {
+  display: flex; }
+
+.scrolled-col {
+  /*overflow-y: scroll;*/
+  height: 100%;
+  z-index: 2; }
+
+.view-block {
+  margin: 40pt 0; }
+
+.col-1 {
+  width: 8.33%; }
+
+.col-2 {
+  width: 16.6%; }
+
+.col-5 {
+  width: 41.6%; }
+
+.col-6 {
+  width: 50%; }
+
+.centered {
+  justify-content: center;
+  align-items: center; }
+
+.text-righted {
+  text-align: right; }
+
+.text-lefted {
+  text-align: left; }
+
+#canvas-bg {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0; }
+
+#nav-pills {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  justify-content: flex-end; }
+
+#second-pill, #third-pill, .mini-pill {
+  opacity: .2; }
+
+.big-pill-zone {
+  cursor: pointer; }
+
+a {
+  color: white;
+  text-decoration: unset;
+  border-bottom: 2px solid white; }
+
+h1 {
+  font-size: 32pt;
+  margin: 5pt 0px; }
+
+.p-32 {
+  font-size: 16pt; }
+
+.p-40 {
+  font-size: 20pt;
+  margin: 4pt 0; }
+
+.p-64 {
+  font-size: 32pt; }
+
+#avatar {
+  align-self: flex-end;
+  margin-bottom: -8pt;
+  margin-left: 5%;
+  width: 70%;
+  max-width: 78%;
+  max-height: 90vh; }
+
+#left-tree {
+  background: url("/public/img/tree-1.png") center center;
+  background-size: cover;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 46.4vh;
+  height: 33vh; }
+
+#right-tree {
+  background: url("/public/img/tree-2.png") center center;
+  background-size: cover;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 25.9vh;
+  height: 18.7vh; }
+
+#third-block {
+  opacity: 0;
+  visibility: hidden; }
+
+@media screen and (max-width: 780px) {
+  .row {
+    flex-direction: column; }
+  .col-6, .col-1, .col-5 {
+    width: 100%; }
+  #avatar {
+    display: none; }
+  #nav-pills {
+    justify-content: center;
+    transform: rotate(-90deg);
+    height: 74pt; } }
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* remove scrollbar space */
+  background: transparent;
+  /* optional: just make scrollbar invisible */ }
+
