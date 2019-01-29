@@ -61,6 +61,18 @@ canvas {
 	margin:40pt 0;
 }
 
+.col-1 {
+	width:8.33%;
+} 
+
+.col-2 {
+	width:16.6%;
+} 
+
+.col-5 {
+	width:41.6%;
+} 
+
 .col-6 {
 	width:50%;
 }
@@ -84,6 +96,27 @@ canvas {
     top:0;
     right:0;
     left:0;
+}
+
+#nav-pills {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    justify-content: flex-end;
+}
+
+#second-pill, #third-pill, .mini-pill {
+	opacity: .2;
+}
+
+.big-pill-zone {
+	cursor:pointer;
+}
+
+a {
+    color: white;
+    text-decoration: unset;
+    border-bottom: 2px solid white;
 }
 
 h1 {
@@ -143,8 +176,16 @@ h1 {
 	.row {
 		flex-direction: column;
 	}
-	.col-6 {
+	.col-6, .col-1, .col-5 {
 		width:100%;
+	}
+	#avatar {
+		display: none;
+	}
+	#nav-pills {
+	    justify-content: center;
+	    transform: rotate(-90deg);
+        height: 74pt;
 	}
 }
 
