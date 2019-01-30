@@ -1,5 +1,6 @@
 import style from "./scss/style.scss";
 import $ from 'jquery';
+import * as Hammer from 'hammerjs';
 import utils from "./js/utils.js";
 import "./js/canvas.js";
 import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
@@ -43,11 +44,62 @@ tlLoader
 	.to(secondBlock, 2, {autoAlpha:0.3} )
 	.to(thirdBlock, 2, {autoAlpha:1},'+=-1.3' )
 	
+// var hammertime = new Hammer(window, {});
+// hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+// hammertime.on('panup pandown', function(e) {
+// 	var direction = null;
+// 	if(e.type=='panup'){
+// 		if(end!=true) scrollPosition += -1;
+//     		direction = 'down';
+//     		fillMiniPills(direction);
+//     		begin = false;
+// 	}
+
+// 	if(e.type=='pandown'){
+// 		if(end!=true) scrollPosition += 1;
+//     		direction = 'down';
+//     		fillMiniPills(direction);
+//     		begin = false;
+// 	}
+
+// 	if(scrollPosition<=-4 && direction == 'down') {
+//     		scrollPosition = 0;
+//     		if (currentIndex==1) {
+//     			// for miniPills stop
+//     			end = true;
+//     		}
+//     		if (currentIndex==2) {
+// 				// Stop down scroll
+// 	    		return;
+// 	    	}
+// 	    	currentIndex++;
+//     		loadBlock(direction);
+//     	} 
+
+//     	if(scrollPosition>=4 && direction == 'up') {
+//     		if (currentIndex==1) {
+//     			// for miniPills stop
+//     			begin = true;
+//     		}
+//     		scrollPosition = 0;
+//     		if (currentIndex==0) {
+// 	    		// Stop up scroll
+// 	    		return;
+// 	    	}
+// 	    	currentIndex--;
+//     		loadBlock(direction);
+//     	}
+
+// });
 
 $(document).ready(function(){
-    body.bind('mousewheel', function(e){
+	// body.bind('touchmove', carouselPage);
+    body.bind('mousewheel', carouselPage);
+});
 
 
+
+function carouselPage(e) {
     	var direction = null;
     	if (e.originalEvent.wheelDelta/120 == -1) {
     		if(end!=true) scrollPosition += e.originalEvent.wheelDelta/120;
@@ -89,8 +141,7 @@ $(document).ready(function(){
 	    	currentIndex--;
     		loadBlock(direction);
     	} 
-    });
-});
+    }
 
 function loadBlock(direction) {
 	var prevBlock = $(blocks[currentIndex-1]),

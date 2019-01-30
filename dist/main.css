@@ -101,6 +101,9 @@ h1 {
   font-size: 32pt;
   margin: 5pt 0px; }
 
+.p-24 {
+  font-size: 12pt; }
+
 .p-32 {
   font-size: 16pt; }
 
@@ -140,6 +143,20 @@ h1 {
 #third-block {
   opacity: 0;
   visibility: hidden; }
+
+#maintenance {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 90vh;
+  display: flex;
+  transform: rotate(-90deg);
+  align-items: flex-end;
+  padding-bottom: 50pt;
+  z-index: 3;
+  opacity: .4;
+  justify-content: center; }
 
 @media screen and (max-width: 780px) {
   .row {
