@@ -44,53 +44,60 @@ tlLoader
 	.to(secondBlock, 2, {autoAlpha:0.3} )
 	.to(thirdBlock, 2, {autoAlpha:1},'+=-1.3' )
 	
-// var hammertime = new Hammer(window, {});
-// hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-// hammertime.on('panup pandown', function(e) {
-// 	var direction = null;
-// 	if(e.type=='panup'){
-// 		if(end!=true) scrollPosition += -1;
-//     		direction = 'down';
-//     		fillMiniPills(direction);
-//     		begin = false;
-// 	}
+var bpm = 0;
+var hammertime = new Hammer(window, {});
+hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+hammertime.on('panup pandown', function(e) {
+	if (bpm == 1) return;
+	bpm = 1;
+	setTimeout(()=>{bpm=0},50);
 
-// 	if(e.type=='pandown'){
-// 		if(end!=true) scrollPosition += 1;
-//     		direction = 'down';
-//     		fillMiniPills(direction);
-//     		begin = false;
-// 	}
+	var direction = null;
+	if(e.type=='panup'){
+		if(end!=true) scrollPosition += -1;
+    		direction = 'down';
+    		fillMiniPills(direction);
+    		begin = false;
+	}
 
-// 	if(scrollPosition<=-4 && direction == 'down') {
-//     		scrollPosition = 0;
-//     		if (currentIndex==1) {
-//     			// for miniPills stop
-//     			end = true;
-//     		}
-//     		if (currentIndex==2) {
-// 				// Stop down scroll
-// 	    		return;
-// 	    	}
-// 	    	currentIndex++;
-//     		loadBlock(direction);
-//     	} 
+	if(e.type=='pandown'){
+		if(end!=true) scrollPosition += 1;
+    		direction = 'up';
+    		fillMiniPills(direction);
+    		end = false;
+	}
 
-//     	if(scrollPosition>=4 && direction == 'up') {
-//     		if (currentIndex==1) {
-//     			// for miniPills stop
-//     			begin = true;
-//     		}
-//     		scrollPosition = 0;
-//     		if (currentIndex==0) {
-// 	    		// Stop up scroll
-// 	    		return;
-// 	    	}
-// 	    	currentIndex--;
-//     		loadBlock(direction);
-//     	}
+	if(scrollPosition<=-4 && direction == 'down') {
+		scrollPosition = 0;
+		if (currentIndex==1) {
+			// for miniPills stop
+			end = true;
+		}
+		if (currentIndex==2) {
+			// Stop down scroll
+    		return;
+    	}
+    	currentIndex++;
+		loadBlock(direction);
+	} 
 
-// });
+	if(scrollPosition>=4 && direction == 'up') {
+		if (currentIndex==1) {
+			// for miniPills stop
+			begin = true;
+		}
+		scrollPosition = 0;
+		if (currentIndex==0) {
+    		// Stop up scroll
+    		return;
+    	}
+    	currentIndex--;
+		loadBlock(direction);
+	}
+
+	console.log(currentIndex, ' ',scrollPosition);
+
+});
 
 $(document).ready(function(){
 	// body.bind('touchmove', carouselPage);
