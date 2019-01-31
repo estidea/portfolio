@@ -59,6 +59,7 @@ canvas {
 
 .view-block {
 	margin:40pt 0;
+    height: 160pt;
 }
 
 .col-1 {
@@ -79,7 +80,7 @@ canvas {
 
 .centered {
 	justify-content: center;
-	align-items: center;
+	/*align-items: center;*/
 }
 
 .text-righted {
@@ -211,4 +212,13 @@ h1 {
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+#portfolio {
+	position: absolute;
+    bottom:0;
+    top:0;
+    right:0;
+    left:0;
+	z-index: 5;
 }

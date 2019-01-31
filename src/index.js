@@ -24,17 +24,22 @@ var HEIGHT = window.screen.height;
 var speed = .5;
 var scrollPosition = 0;
 var blockHeight = firstBlock.outerHeight(true);
-var position = HEIGHT/2 - blockHeight/2 - parseInt(firstBlock.css("margin-top"));
+// var position = HEIGHT/2 - blockHeight/2 - parseInt(firstBlock.css("margin-top"));
+var position = HEIGHT/2 - blockHeight/2;
 var currentIndex = 0;
 var miniPillIndex = 0;
 var blockY = position;
 var begin = true;
 var end = false;
+var scaleVal = .4;
+
+console.log(HEIGHT,' ',blockHeight,' ',position);
+
 
 tlLoader
 	.set(scrolledCol, {y:position})
-	.set(secondBlock, {autoAlpha:0, scale:.4})
-	.set(thirdBlock, {autoAlpha:0, scale:.4})
+	.set(secondBlock, {autoAlpha:0, scale:scaleVal})
+	.set(thirdBlock, {autoAlpha:0, scale:scaleVal})
 	.fromTo(body,2,	{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
 	.fromTo(avatar,1,	{autoAlpha:0}, {autoAlpha:1, ease:Power0.easeNone})
 	.fromTo(el1,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
@@ -48,8 +53,8 @@ var bpm = 0;
 var hammertime = new Hammer(window, {});
 hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
 hammertime.on('panup pandown', function(e) {
-	if (bpm == 1) return;
-	bpm = 1;
+	if (bpm == 2) return;
+	bpm++;
 	setTimeout(()=>{bpm=0},50);
 
 	var direction = null;
@@ -61,7 +66,7 @@ hammertime.on('panup pandown', function(e) {
 	}
 
 	if(e.type=='pandown'){
-		if(end!=true) scrollPosition += 1;
+		if(begin!=true) scrollPosition += 1;
     		direction = 'up';
     		fillMiniPills(direction);
     		end = false;
@@ -94,8 +99,6 @@ hammertime.on('panup pandown', function(e) {
     	currentIndex--;
 		loadBlock(direction);
 	}
-
-	console.log(currentIndex, ' ',scrollPosition);
 
 });
 
@@ -163,9 +166,9 @@ function loadBlock(direction) {
 
 	tlScroller
 		.to(scrolledCol, speed, {y:blockY, ease: Power2.easeOut})
-		.to(prevBlock, speed, {autoAlpha:0.3, scale:.4, ease: Power2.easeOut},'-='+speed)
+		.to(prevBlock, speed, {autoAlpha:0.3, scale:scaleVal, ease: Power2.easeOut},'-='+speed)
 		.to(currentBlock, speed, {autoAlpha:1, scale:1, ease: Power2.easeOut},'-='+speed)
-		.to(nextBlock, speed, {autoAlpha:0.3, scale:.4, ease: Power2.easeOut},'-='+speed)
+		.to(nextBlock, speed, {autoAlpha:0.3, scale:scaleVal, ease: Power2.easeOut},'-='+speed)
 }
 
 function fillMiniPills(direction) {

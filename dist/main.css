@@ -49,7 +49,8 @@ canvas {
   z-index: 2; }
 
 .view-block {
-  margin: 40pt 0; }
+  margin: 40pt 0;
+  height: 160pt; }
 
 .col-1 {
   width: 8.33%; }
@@ -65,7 +66,7 @@ canvas {
 
 .centered {
   justify-content: center;
-  align-items: center; }
+  /*align-items: center;*/ }
 
 .text-righted {
   text-align: right; }
@@ -175,4 +176,12 @@ h1 {
   /* remove scrollbar space */
   background: transparent;
   /* optional: just make scrollbar invisible */ }
+
+#portfolio {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5; }
 
