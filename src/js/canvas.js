@@ -86,6 +86,23 @@ window.onload = function() {
 		} 
 	},100);
 
+	function newStars()	{
+		var x = utils.randomIntFromRange(0,width);
+		var y = utils.randomIntFromRange(0,height);
+		var radius = Math.pow(Math.pow(x-centerEyeX, 2)+Math.pow(y-centerEyeY, 2),0.5);
+		var startAngle = utils.randomIntFromRange(0,359)*PI/180;
+		var endAngle = startAngle + utils.randomIntFromRange(60,180)*PI/180;
+		var lineWidth = utils.randomFloatFromRange(minLine,maxLine);
+		var speed = utils.randomFloatFromRange(minSpeed,maxSpeed)*PI/180/10;
+		if (starsArray.length<maxStars) {
+			starsArray.push(new Star(centerEyeX,centerEyeY,radius, startAngle,endAngle,lineWidth,speed));
+		} else {
+			clearInterval(intervalID);
+		}
+	}
+	var intervalID=setInterval(newStars,100);
+
+
 	function animate() {
 		requestAnimationFrame(animate);
 		c.clearRect(0,0,width,height);

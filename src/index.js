@@ -100,7 +100,6 @@ hammertime.on('panup pandown', function(e) {
 });
 
 $(document).ready(function(){
-	// body.bind('touchmove', carouselPage);
     body.bind('mousewheel', carouselPage);
 });
 
@@ -160,9 +159,11 @@ function loadBlock(direction) {
 	} else if(direction=='down'){
 		blockY -= blockHeight;
 	}
-
 	tlScroller
 		.to(scrolledCol, speed, {y:blockY, ease: Power2.easeOut})
+		.set(prevBlock, {css:{cursor:"pointer"}})
+		.set(currentBlock, {css:{cursor:"default"}})
+		.set(nextBlock, {css:{cursor:"pointer"}})
 		.to(prevBlock, speed, {autoAlpha:0.3, scale:scaleVal, ease: Power2.easeOut},'-='+speed)
 		.to(currentBlock, speed, {autoAlpha:1, scale:1, ease: Power2.easeOut},'-='+speed)
 		.to(nextBlock, speed, {autoAlpha:0.3, scale:scaleVal, ease: Power2.easeOut},'-='+speed)
@@ -188,7 +189,7 @@ function fillMiniPills(direction) {
 	}
 }
 
-$('#first-pill-zone').on("click",()=>{
+$('#first-pill-zone, #first-block').on("click",()=>{
 	begin = true;
 	end = false;
 	for(var i=1;i<9;i++) {
@@ -203,7 +204,7 @@ $('#first-pill-zone').on("click",()=>{
 	scrollPosition = 0;
 })
 
-$('#second-pill-zone').on("click",()=>{
+$('#second-pill-zone, #second-block').on("click",()=>{
 	begin = false;
 	end = false;
 	for(var i=1;i<5;i++) {
@@ -223,7 +224,7 @@ $('#second-pill-zone').on("click",()=>{
 	scrollPosition = 0;
 })
 
-$('#third-pill-zone').on("click",()=>{
+$('#third-pill-zone, #third-block').on("click",()=>{
 	begin = false;
 	end = true;
 	for(var i=0;i<9;i++) {
@@ -239,20 +240,20 @@ $('#third-pill-zone').on("click",()=>{
 })
 
 
-(function() {
-    function scrollHorizontally(e) {
-        e = window.event || e;
-        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-        document.getElementById('case-slider').scrollLeft -= (delta*40); // Multiplied by 40
-        e.preventDefault();
-    }
-    if (document.getElementById('case-slider').addEventListener) {
-        // IE9, Chrome, Safari, Opera
-        document.getElementById('case-slider').addEventListener("mousewheel", scrollHorizontally, false);
-        // Firefox
-        document.getElementById('case-slider').addEventListener("DOMMouseScroll", scrollHorizontally, false);
-    } else {
-        // IE 6/7/8
-        document.getElementById('case-slider').attachEvent("onmousewheel", scrollHorizontally);
-    }
-})();
+// (function() {
+//     function scrollHorizontally(e) {
+//         e = window.event || e;
+//         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+//         document.getElementById('case-slider').scrollLeft -= (delta*40); // Multiplied by 40
+//         e.preventDefault();
+//     }
+//     if (document.getElementById('case-slider').addEventListener) {
+//         // IE9, Chrome, Safari, Opera
+//         document.getElementById('case-slider').addEventListener("mousewheel", scrollHorizontally, false);
+//         // Firefox
+//         document.getElementById('case-slider').addEventListener("DOMMouseScroll", scrollHorizontally, false);
+//     } else {
+//         // IE 6/7/8
+//         document.getElementById('case-slider').attachEvent("onmousewheel", scrollHorizontally);
+//     }
+// })();
