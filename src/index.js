@@ -23,17 +23,14 @@ var tlLoader = new TimelineMax(),
 var HEIGHT = window.screen.height;
 var speed = .5;
 var scrollPosition = 0;
-var blockHeight = firstBlock.outerHeight(true);
-// var position = HEIGHT/2 - blockHeight/2 - parseInt(firstBlock.css("margin-top"));
-var position = HEIGHT/2 - blockHeight/2;
+var blockHeight = firstBlock.outerHeight(true)-parseInt(firstBlock.css("margin-bottom"));
+var position = HEIGHT/2 - blockHeight/2 -parseInt(firstBlock.css("margin-bottom"));
 var currentIndex = 0;
 var miniPillIndex = 0;
 var blockY = position;
 var begin = true;
 var end = false;
 var scaleVal = .4;
-
-console.log(HEIGHT,' ',blockHeight,' ',position);
 
 
 tlLoader
@@ -240,3 +237,22 @@ $('#third-pill-zone').on("click",()=>{
 	loadBlock(null);
 	scrollPosition = 0;
 })
+
+
+(function() {
+    function scrollHorizontally(e) {
+        e = window.event || e;
+        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        document.getElementById('case-slider').scrollLeft -= (delta*40); // Multiplied by 40
+        e.preventDefault();
+    }
+    if (document.getElementById('case-slider').addEventListener) {
+        // IE9, Chrome, Safari, Opera
+        document.getElementById('case-slider').addEventListener("mousewheel", scrollHorizontally, false);
+        // Firefox
+        document.getElementById('case-slider').addEventListener("DOMMouseScroll", scrollHorizontally, false);
+    } else {
+        // IE 6/7/8
+        document.getElementById('case-slider').attachEvent("onmousewheel", scrollHorizontally);
+    }
+})();
