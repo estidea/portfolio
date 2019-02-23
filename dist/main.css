@@ -16,6 +16,9 @@ body {
   margin: 0;
   padding: 8pt; }
 
+:focus {
+  outline: 0; }
+
 canvas {
   position: absolute;
   bottom: 0;
@@ -40,6 +43,21 @@ canvas {
   display: flex;
   flex-direction: row; }
 
+.row-10 {
+  padding: 24pt 24pt 0;
+  height: 83.3%; }
+
+.row-2 {
+  padding: 0 24pt 24pt;
+  height: 16.6%;
+  align-items: center; }
+
+.column {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+
 .col {
   display: flex; }
 
@@ -58,11 +76,17 @@ canvas {
 .col-2 {
   width: 16.6%; }
 
+.col-4 {
+  width: 33.3%; }
+
 .col-5 {
   width: 41.6%; }
 
 .col-6 {
   width: 50%; }
+
+.col-8 {
+  width: 66.6%; }
 
 .centered {
   justify-content: center;
@@ -169,19 +193,55 @@ h1 {
   #nav-pills {
     justify-content: center;
     transform: rotate(-90deg);
-    height: 74pt; } }
+    height: 74pt; }
+  #maintenance {
+    padding-bottom: 28pt; } }
 
-::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
-  background: transparent;
-  /* optional: just make scrollbar invisible */ }
-
+/*::-webkit-scrollbar {
+    width: 0px;  
+    background: transparent;  
+}*/
 #portfolio {
   position: absolute;
   bottom: 0;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 5; }
+  z-index: 5;
+  background: rgba(31, 31, 31, 0.93); }
+
+.projects {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0; }
+
+.projects li span {
+  cursor: pointer;
+  text-decoration: underline; }
+
+.projects li span:hover {
+  color: #01BBB0; }
+
+.projects li {
+  padding: 8pt 0;
+  font-size: 12pt; }
+
+#case-slider {
+  background-color: white;
+  width: 100%;
+  overflow-y: scroll; }
+
+#case-slider img {
+  height: 100%;
+  float: left; }
+
+/* fixes */
+input,
+textarea,
+button,
+select,
+a, svg {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
