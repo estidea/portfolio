@@ -124,13 +124,14 @@ a {
 
 h1 {
   font-size: 32pt;
-  margin: 5pt 0px; }
+  margin: 5pt 0; }
 
 .p-24 {
   font-size: 12pt; }
 
 .p-32 {
-  font-size: 16pt; }
+  font-size: 16pt;
+  margin: 4pt 0; }
 
 .p-40 {
   font-size: 20pt;
@@ -172,20 +173,20 @@ h1 {
 #maintenance {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 16pt;
   bottom: 0;
-  width: 90vh;
+  text-orientation: sideways-right;
+  writing-mode: vertical-rl;
   display: flex;
-  transform: rotate(-90deg);
+  transform: rotate(-180deg);
   align-items: flex-end;
-  padding-bottom: 50pt;
   z-index: 3;
   opacity: .4;
   justify-content: center; }
 
 @media screen and (max-width: 780px) {
   .row {
-    flex-direction: column; }
+    flex-direction: column-reverse; }
   .col-6, .col-1, .col-5 {
     width: 100%; }
   #avatar {
@@ -195,7 +196,7 @@ h1 {
     transform: rotate(-90deg);
     height: 74pt; }
   #maintenance {
-    padding-bottom: 28pt; } }
+    right: 8pt; } }
 
 /*::-webkit-scrollbar {
     width: 0px;  
