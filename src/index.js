@@ -21,7 +21,8 @@ var tlLoader = new TimelineMax(),
 	el4 = $('*[data-order="4"]'),
 	close = $('#close'),
 	portfolio = $('#portfolio'),
-	portfolioMenu = $('#topmenu-portfolio');
+	portfolioMenu = $('#topmenu-portfolio'),
+	portfolioLink = $('.link-to-portfolio');
 
 var HEIGHT = window.screen.height;
 var speed = .5;
@@ -49,20 +50,21 @@ tlLoader
 	.set(scrolledCol, {y:position})
 	.set(secondBlock, {autoAlpha:0, scale:scaleVal})
 	.set(thirdBlock, {autoAlpha:0, scale:scaleVal})
-	.fromTo(body,2,	{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
+	.fromTo(body,1,	{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
 	.fromTo(avatar,1,	{autoAlpha:0}, {autoAlpha:1, ease:Power0.easeNone})
 	.fromTo(el1,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.fromTo(el2,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.fromTo(el3,0.5,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone}, "+=0.6")
 	.fromTo(el4,0.8,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.to(secondBlock, 2, {autoAlpha:opacitySecond} )
+	.fromTo(portfolioMenu,1,{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
 	.to(thirdBlock, 2, {autoAlpha:1},'+=-1.3' )
 	
 
 $(document).ready(function(){
     body.bind('mousewheel', carouselPage);
     close.bind('click',togglePortfolio);
-    portfolioMenu.bind('click',togglePortfolio);
+    portfolioLink.bind('click',togglePortfolio);
 
     /* Filling the portfolio */
     for(var i=0;i<portfolioArray.length;i++){

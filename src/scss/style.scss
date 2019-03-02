@@ -226,7 +226,7 @@ h1 {
 
 #portfolio {
 	position: absolute;
-	padding:80px 80px 80px 160px;
+	padding:80px;
     bottom:0;
     top:0;
     right:0;
@@ -240,8 +240,8 @@ h1 {
 
 #close {
 	position: absolute;
- 	top:79px;
-    left:104px;
+ 	top:80px;
+    right:80px;
     opacity:0;
     visibility: hidden;
     transition: all .3s;
@@ -255,12 +255,16 @@ h1 {
 }
 
 .portfolio-item {
-	margin-bottom: 56px;
+	margin-bottom: 80px;
 }
 
 .portfolio-title {
 	margin-top:5px;
 	margin-bottom:21px;
+}
+
+.portfolio-category {
+    margin-top: -2px;
 }
 
 .portfolio-date {
@@ -283,8 +287,8 @@ h1 {
 
 #topmenu {
 	position: absolute;
-	left:80px;
-	top:80px;
+	right:80px;
+	bottom:80px;
     z-index: 5;
 }
 
@@ -302,11 +306,23 @@ h1 {
     opacity:.9;
 }
 
-.menu li:hover {
+.link-to-portfolio {
+	border-bottom: 2px solid white;
+	transition: all .3s;
+	cursor:pointer;
+}
+
+.menu li:hover, .link-to-portfolio:hover {
 	color: #01BBB0;
 	transition: all .3s;
 	border-bottom: 2px solid #01BBB0;
 	opacity:1;
+}
+
+@media screen and (max-width:1200px ) {
+	#nav-pills {
+		justify-content: center;
+	}
 }
 
 @media screen and (max-width:780px ) {
@@ -360,14 +376,8 @@ h1 {
 		font-size: 32pt;
 	}
 
-	#topmenu, #close {
-	    left: 0;
-	    padding: 16px;
-	    top: 0;
-	    display: flex;
-	    justify-content: center;
-	    width: 100%;
-	    background: rgba(31, 31, 31, 0.78);
+	#topmenu {
+		display:none;
 	}
 
 	#portfolio {
