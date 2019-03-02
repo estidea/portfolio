@@ -178,6 +178,7 @@ function fillMiniPills(direction) {
 }
 
 $('#first-pill-zone, #first-block').on("click",()=>{
+	if (overlayOpened == true) return;
 	begin = true;
 	end = false;
 	for(var i=1;i<9;i++) {
@@ -193,6 +194,7 @@ $('#first-pill-zone, #first-block').on("click",()=>{
 })
 
 $('#second-pill-zone, #second-block').on("click",()=>{
+	if (overlayOpened == true) return;
 	begin = false;
 	end = false;
 	for(var i=1;i<5;i++) {
@@ -213,6 +215,7 @@ $('#second-pill-zone, #second-block').on("click",()=>{
 })
 
 $('#third-pill-zone, #third-block').on("click",()=>{
+	if (overlayOpened == true) return;
 	begin = false;
 	end = true;
 	for(var i=0;i<9;i++) {

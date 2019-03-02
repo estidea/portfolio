@@ -305,5 +305,10 @@ h1 {
     width: 100%;
     flex-direction: row; }
   .portfolio-item .col-1 {
-    width: 8.33%; } }
+    width: 8.33%; }
+  #close {
+    top: 24px;
+    right: 24px; }
+  a, a:hover, a:focus, a:active, .menu li, .link-to-portfolio, .menu li:hover, .link-to-portfolio:hover {
+    border-width: 1px; } }
 
