@@ -1,6 +1,7 @@
 import style from "./scss/style.scss";
 import $ from 'jquery';
 import utils from "./js/utils.js";
+import {portfolioArray} from "./js/portfolio-items.js";
 import "./js/canvas.js";
 import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
 var blocks = ["#first-block","#second-block","#third-block"],
@@ -18,13 +19,15 @@ var tlLoader = new TimelineMax(),
 	el2 = $('*[data-order="2"]'),
 	el3 = $('*[data-order="3"]'),
 	el4 = $('*[data-order="4"]'),
-	close = $('#close');
+	close = $('#close'),
+	portfolio = $('#portfolio'),
+	portfolioMenu = $('#topmenu-portfolio');
 
 var HEIGHT = window.screen.height;
 var speed = .5;
 var scrollPosition = 0;
 var blockHeight = firstBlock.outerHeight(true)-parseInt(firstBlock.css("margin-bottom"));
-var position = HEIGHT/2 - blockHeight/2 -parseInt(firstBlock.css("margin-bottom"));
+var position = HEIGHT/2 - blockHeight/2 -2*parseInt(firstBlock.css("margin-bottom"));
 var currentIndex = 0;
 var miniPillIndex = 0;
 var blockY = position;
@@ -58,8 +61,31 @@ tlLoader
 
 $(document).ready(function(){
     body.bind('mousewheel', carouselPage);
-    close.bind('click',closePortfolio);
-    
+    close.bind('click',togglePortfolio);
+    portfolioMenu.bind('click',togglePortfolio);
+
+    /* Filling the portfolio */
+    for(var i=0;i<portfolioArray.length;i++){
+    	var vasya = 'aaaaaaa';
+    	var newItem = `<div class="row row-10 portfolio-item">
+					<div class="col col-1 centered">
+						<div class="p-16 colored portfolio-date">${portfolioArray[i].date}</div>
+					</div>
+					<div class="col col-11 column">
+						<div class="p-16 portfolio-category">${portfolioArray[i].category}</div>
+						<div class="p-32 portfolio-title">${portfolioArray[i].title}</div>
+						<div class="p-16 portfolio-links">`;
+						for(var j=0;j<portfolioArray[i].links.length;j++){
+							newItem += `<a href="${portfolioArray[i].links[j].link}" target="_blank" class="portfolio-links-item">
+											${portfolioArray[i].links[j].linkCaption}
+										</a>`;
+						}	
+						newItem += `</div>
+					</div>
+				</div>`
+    	$('#portfolio-inner').append(newItem);
+    	
+    }
 });
 
 
@@ -199,6 +225,21 @@ $('#third-pill-zone, #third-block').on("click",()=>{
 	scrollPosition = 0;
 })
 
-function closePortfolio() {
-	overlayOpened = false;
+function togglePortfolio() {
+	if(overlayOpened == false) {
+		overlayOpened = true;
+		// open portfolio
+		tlScroller
+			.set(close,{autoAlpha:1})
+			.to(portfolio, .4, {autoAlpha:1});
+			
+	} else {
+		overlayOpened = false;
+		// close portfolio
+		tlScroller
+			.set(close,{autoAlpha:0})
+			.to(portfolio, .4, {autoAlpha:0});
+			
+	}
+	
 }
