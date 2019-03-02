@@ -10,10 +10,10 @@
 	<div id="canvas-bg">
 		<canvas></canvas>
 	</div>
-	<div id="maintenance">The site is under development now. Every day I'm making it better. Portfolio is coming.</div>
+<!-- 	<div id="maintenance">The site is under development now. Every day I'm making it better. Portfolio is coming.</div> -->
 	<div class="container">
 
-		<div class="row">
+		<div class="row row-full">
 			<div class="col col-1 righted" id="nav-pills">
 				<svg width="35" height="323" viewBox="0 0 35 323" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<circle class="big-pill" id="second-pill" r="7.5" transform="matrix(-1 0 0 1 17.5 161.5)" fill="white"/>
@@ -31,7 +31,7 @@
 					<circle class="mini-pill" id="pill21" r="1.5" transform="matrix(-1 0 0 1 18.5 200.5)" fill="white"/>
 				</svg>
 			</div>
-			<div class="col col-5 centered">
+			<div class="col col-5 centered" id="story">
 				<div class="scrolled-col">
 					<div id="first-block" class="view-block">
 						<div data-order="1" class="p-32">Hello! My name is</div>
@@ -62,30 +62,34 @@
 	</div> <!-- /container -->
 	<div id="left-tree"></div>
 	<div id="right-tree"></div>
-	<!-- <div id="portfolio" class="container">
-		<div class="column">
-			<div class="row row-10">
-				<div class="col col-4">
-					<ul class="projects">
-						<li>
-							<span id="case-1">#1 UI/UX-design of business app</span>
-						</li>
-						<li>
-							<span id="case-2">#2 UI/UX-design of music app</span>
-						</li>
-				</div>
-				<div class="col col-8">
-					<div id="case-slider">
-						<img src="/public/img/case1-img1.jpg" alt="">
-						<img src="/public/img/case1-img2.jpg" alt="">
-						<img src="/public/img/case1-img3.jpg" alt="">
+	<div id="portfolio">
+		<div class="container">
+			<div id="close">
+				<svg width="32" height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0.213379" y="2.06677" width="2.92269" height="40.9177" transform="rotate(-45 0.213379 2.06677)" fill="white"/>
+					<rect x="2.28003" y="30.9999" width="2.92269" height="40.9177" transform="rotate(-135 2.28003 30.9999)" fill="white"/>
+				</svg>
+			</div>
+			<div class="column">
+				<div class="row row-10 portfolio-item">
+					<div class="col col-1 centered">
+						<div class="p-16 colored portfolio-date">going</div>
+					</div>
+					<div class="col col-11 column">
+						<div class="p-16 portfolio-category">UI/UX, prototyping</div>
+						<div class="p-32 portfolio-title">App for business event networking</div>
+						<div class="p-16 portfolio-links">
+							<a href="#link" class="portfolio-links-item">
+								Link to the Figma project
+							</a>
+							<a href="#link" class="portfolio-links-item">
+								Link to prototype
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row row-2">
-				<p>Project description</p>
-			</div>
-		</div>
-	</div> -->
+		</div>	
+	</div>
 </body>
 </html>

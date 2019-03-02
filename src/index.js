@@ -1,6 +1,5 @@
 import style from "./scss/style.scss";
 import $ from 'jquery';
-import * as Hammer from 'hammerjs';
 import utils from "./js/utils.js";
 import "./js/canvas.js";
 import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
@@ -18,7 +17,8 @@ var tlLoader = new TimelineMax(),
 	el1 = $('*[data-order="1"]'),
 	el2 = $('*[data-order="2"]'),
 	el3 = $('*[data-order="3"]'),
-	el4 = $('*[data-order="4"]');
+	el4 = $('*[data-order="4"]'),
+	close = $('#close');
 
 var HEIGHT = window.screen.height;
 var speed = .5;
@@ -30,8 +30,17 @@ var miniPillIndex = 0;
 var blockY = position;
 var begin = true;
 var end = false;
-var scaleVal = .4;
-
+var mobile = false;
+var overlayOpened = false;
+var scaleVal, opacitySecond;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    mobile = true;
+    scaleVal = 1;
+    opacitySecond = 1;
+} else {
+	scaleVal = .4;
+	opacitySecond = .3;
+}
 
 tlLoader
 	.set(scrolledCol, {y:position})
@@ -43,32 +52,34 @@ tlLoader
 	.fromTo(el2,0.7,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.fromTo(el3,0.5,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone}, "+=0.6")
 	.fromTo(el4,0.8,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
-	.to(secondBlock, 2, {autoAlpha:0.3} )
+	.to(secondBlock, 2, {autoAlpha:opacitySecond} )
 	.to(thirdBlock, 2, {autoAlpha:1},'+=-1.3' )
 	
-var bpm = 0;
-var hammertime = new Hammer(window, {});
-hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-hammertime.on('panup pandown', function(e) {
-	if (bpm == 2) return;
-	bpm++;
-	setTimeout(()=>{bpm=0},50);
 
+$(document).ready(function(){
+    body.bind('mousewheel', carouselPage);
+    close.bind('click',closePortfolio);
+    
+});
+
+
+
+function carouselPage(e) {
+	if (overlayOpened == true) return;
 	var direction = null;
-	if(e.type=='panup'){
-		if(end!=true) scrollPosition += -1;
-    		direction = 'down';
-    		fillMiniPills(direction);
-    		begin = false;
+	if (e.originalEvent.wheelDelta/120 == -1) {
+		if(end!=true) scrollPosition += e.originalEvent.wheelDelta/120;
+		direction = 'down';
+		fillMiniPills(direction);
+		begin = false;
 	}
 
-	if(e.type=='pandown'){
-		if(begin!=true) scrollPosition += 1;
-    		direction = 'up';
-    		fillMiniPills(direction);
-    		end = false;
+	if (e.originalEvent.wheelDelta/120 == 1) {
+		if(begin!=true) scrollPosition += e.originalEvent.wheelDelta/120;
+		direction = 'up';
+		fillMiniPills(direction);
+		end = false;
 	}
-
 	if(scrollPosition<=-4 && direction == 'down') {
 		scrollPosition = 0;
 		if (currentIndex==1) {
@@ -95,59 +106,8 @@ hammertime.on('panup pandown', function(e) {
     	}
     	currentIndex--;
 		loadBlock(direction);
-	}
-
-});
-
-$(document).ready(function(){
-    body.bind('mousewheel', carouselPage);
-});
-
-
-
-function carouselPage(e) {
-    	var direction = null;
-    	if (e.originalEvent.wheelDelta/120 == -1) {
-    		if(end!=true) scrollPosition += e.originalEvent.wheelDelta/120;
-    		direction = 'down';
-    		fillMiniPills(direction);
-    		begin = false;
-    	}
-
-    	if (e.originalEvent.wheelDelta/120 == 1) {
-    		if(begin!=true) scrollPosition += e.originalEvent.wheelDelta/120;
-    		direction = 'up';
-    		fillMiniPills(direction);
-    		end = false;
-    	}
-    	if(scrollPosition<=-4 && direction == 'down') {
-    		scrollPosition = 0;
-    		if (currentIndex==1) {
-    			// for miniPills stop
-    			end = true;
-    		}
-    		if (currentIndex==2) {
-				// Stop down scroll
-	    		return;
-	    	}
-	    	currentIndex++;
-    		loadBlock(direction);
-    	} 
-
-    	if(scrollPosition>=4 && direction == 'up') {
-    		if (currentIndex==1) {
-    			// for miniPills stop
-    			begin = true;
-    		}
-    		scrollPosition = 0;
-    		if (currentIndex==0) {
-	    		// Stop up scroll
-	    		return;
-	    	}
-	    	currentIndex--;
-    		loadBlock(direction);
-    	} 
-    }
+	} 
+}
 
 function loadBlock(direction) {
 	var prevBlock = $(blocks[currentIndex-1]),
@@ -239,21 +199,6 @@ $('#third-pill-zone, #third-block').on("click",()=>{
 	scrollPosition = 0;
 })
 
-
-// (function() {
-//     function scrollHorizontally(e) {
-//         e = window.event || e;
-//         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-//         document.getElementById('case-slider').scrollLeft -= (delta*40); // Multiplied by 40
-//         e.preventDefault();
-//     }
-//     if (document.getElementById('case-slider').addEventListener) {
-//         // IE9, Chrome, Safari, Opera
-//         document.getElementById('case-slider').addEventListener("mousewheel", scrollHorizontally, false);
-//         // Firefox
-//         document.getElementById('case-slider').addEventListener("DOMMouseScroll", scrollHorizontally, false);
-//     } else {
-//         // IE 6/7/8
-//         document.getElementById('case-slider').attachEvent("onmousewheel", scrollHorizontally);
-//     }
-// })();
+function closePortfolio() {
+	overlayOpened = false;
+}
