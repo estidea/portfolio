@@ -1,6 +1,21 @@
 var portfolioArray = [
 	{
 		date: "going",
+		category: "UI/UX, prototyping, app, BEM, gameDev",
+		title: "Alias for education",
+		links : [
+			{
+				link: "https://www.figma.com/file/P2YJst17PHAuYIiU7QhMvaKv/Alias-education?node-id=0%3A1",
+				linkCaption: "Link to the Figma project"
+			},
+			{
+				link: "https://www.figma.com/proto/P2YJst17PHAuYIiU7QhMvaKv/Alias-education?node-id=0%3A1&viewport=20%2C462%2C0.20908&scaling=scale-down",
+				linkCaption: "Link to prototype"
+			}
+		]
+	},
+	{
+		date: "going",
 		category: "UI/UX, prototyping, iOs, app",
 		title: "App for business event networking",
 		links : [
