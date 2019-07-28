@@ -267,6 +267,19 @@ h1 {
     margin-top: -2px;
 }
 
+.portfolio-image{
+    margin-bottom: 20px;
+}
+
+.portfolio-image iframe{
+
+}
+
+.portfolio-image img{
+	width: auto;
+    max-height: 60vh;
+}
+
 .portfolio-date {
     text-orientation: sideways-right;
     writing-mode: vertical-rl;
@@ -356,6 +369,15 @@ h1 {
 	.portfolio-title {
 		font-size: 20pt;
 	}
+
+	.portfolio-image iframe{
+	    margin-top: 10px;
+	}
+	    
+
+	.portfolio-image iframe{
+	    width:100%;
+	}
 	
 
 	.p-24 {
@@ -377,7 +399,7 @@ h1 {
 	}
 
 	#topmenu {
-		display:none;
+	    top: 80px;
 	}
 
 	#portfolio {

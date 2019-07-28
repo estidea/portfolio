@@ -57,7 +57,6 @@ tlLoader
 	.fromTo(el3,0.5,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone}, "+=0.6")
 	.fromTo(el4,0.8,{autoAlpha:0, y:-10}, {autoAlpha:1, y:0, ease:Power0.easeNone})
 	.to(secondBlock, 2, {autoAlpha:opacitySecond} )
-	.fromTo(portfolioMenu,1,{autoAlpha:0}, {autoAlpha:1, ease: Expo.easeOut})
 	.to(thirdBlock, 2, {autoAlpha:1},'+=-1.3' )
 	
 
@@ -68,15 +67,24 @@ $(document).ready(function(){
 
     /* Filling the portfolio */
     for(var i=0;i<portfolioArray.length;i++){
-    	var vasya = 'aaaaaaa';
     	var newItem = `<div class="row row-10 portfolio-item">
 					<div class="col col-1 centered">
 						<div class="p-16 colored portfolio-date">${portfolioArray[i].date}</div>
 					</div>
 					<div class="col col-11 column">
 						<div class="p-16 portfolio-category">${portfolioArray[i].category}</div>
-						<div class="p-32 portfolio-title">${portfolioArray[i].title}</div>
-						<div class="p-16 portfolio-links">`;
+						<div class="p-32 portfolio-title">${portfolioArray[i].title}</div>`;
+						if(portfolioArray[i].images) {
+							for(var j=0;j<portfolioArray[i].images.length;j++){
+							newItem += `<div class="portfolio-image"><img src="/public/img/portfolio/${portfolioArray[i].images[j]}"></div>`;
+							}
+						}
+						if(portfolioArray[i].videos) {
+							for(var j=0;j<portfolioArray[i].videos.length;j++){
+								newItem += `<div class="portfolio-image">${portfolioArray[i].videos[j]}</div>`;
+							}
+						}
+						newItem +=`<div class="p-16 portfolio-links">`;
 						for(var j=0;j<portfolioArray[i].links.length;j++){
 							newItem += `<a href="${portfolioArray[i].links[j].link}" target="_blank" class="portfolio-links-item">
 											${portfolioArray[i].links[j].linkCaption}
@@ -88,8 +96,14 @@ $(document).ready(function(){
     	$('#portfolio-inner').append(newItem);
     	
     }
+    var width = $('iframe').width();
+    $('iframe').css("height",width/1.77777);
 });
 
+$( window ).resize(function() {
+	var width = $('iframe').width();
+    $('iframe').css("height",width/1.77777);
+});
 
 
 function carouselPage(e) {
@@ -99,6 +113,7 @@ function carouselPage(e) {
 		if(end!=true) scrollPosition += e.originalEvent.wheelDelta/120;
 		direction = 'down';
 		fillMiniPills(direction);
+		fillMiniPills(direction);
 		begin = false;
 	}
 
@@ -106,9 +121,10 @@ function carouselPage(e) {
 		if(begin!=true) scrollPosition += e.originalEvent.wheelDelta/120;
 		direction = 'up';
 		fillMiniPills(direction);
+		fillMiniPills(direction);
 		end = false;
 	}
-	if(scrollPosition<=-4 && direction == 'down') {
+	if(scrollPosition<=-2 && direction == 'down') {
 		scrollPosition = 0;
 		if (currentIndex==1) {
 			// for miniPills stop
@@ -122,7 +138,7 @@ function carouselPage(e) {
 		loadBlock(direction);
 	} 
 
-	if(scrollPosition>=4 && direction == 'up') {
+	if(scrollPosition>=2 && direction == 'up') {
 		if (currentIndex==1) {
 			// for miniPills stop
 			begin = true;
@@ -247,4 +263,5 @@ function togglePortfolio() {
 			
 	}
 	
+
 }
