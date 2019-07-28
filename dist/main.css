@@ -219,6 +219,13 @@ h1 {
 .portfolio-category {
   margin-top: -2px; }
 
+.portfolio-image {
+  margin-bottom: 20px; }
+
+.portfolio-image img {
+  width: auto;
+  max-height: 60vh; }
+
 .portfolio-date {
   text-orientation: sideways-right;
   writing-mode: vertical-rl;
@@ -287,6 +294,10 @@ h1 {
     font-size: 10pt; }
   .portfolio-title {
     font-size: 20pt; }
+  .portfolio-image iframe {
+    margin-top: 10px; }
+  .portfolio-image iframe {
+    width: 100%; }
   .p-24 {
     font-size: 12pt; }
   .p-32 {
@@ -298,7 +309,7 @@ h1 {
   .p-64 {
     font-size: 32pt; }
   #topmenu {
-    display: none; }
+    top: 80px; }
   #portfolio {
     padding: 64px 16px 0; }
   #portfolio-inner .row-10 {
